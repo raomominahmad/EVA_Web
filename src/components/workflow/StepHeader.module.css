@@ -1,0 +1,49 @@
+.header {
+  max-width: 760px;
+}
+
+.title {
+  max-width: 20ch;
+  font-size: var(--text-3xl);
+  font-weight: var(--weight-semibold);
+  letter-spacing: -0.03em;
+  line-height: var(--leading-tight);
+  text-wrap: balance;
+}
+
+.lead {
+  max-width: 62ch;
+  margin-top: var(--space-3);
+  color: var(--color-text-muted);
+  font-size: var(--text-lg);
+  line-height: var(--leading-normal);
+  text-wrap: pretty;
+}
+
+/* The project being analysed: metadata under the lead, wrapping rather than truncating so a long
+   name is never cut off. */
+.context {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-2);
+  max-width: 62ch;
+  margin-top: var(--space-4);
+  color: var(--color-text-muted);
+  font-size: var(--text-sm);
+  line-height: var(--leading-snug);
+}
+
+.contextIcon {
+  flex: none;
+  margin-top: 1px;
+}
+
+.contextLabel {
+  color: var(--color-text-muted);
+}
+
+.contextValue {
+  color: var(--color-text);
+  font-weight: var(--weight-medium);
+  overflow-wrap: anywhere;
+}

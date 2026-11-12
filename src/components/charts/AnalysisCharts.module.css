@@ -1,0 +1,28 @@
+.status {
+  display: inline-flex;
+  align-items: flex-start;
+  gap: var(--space-1);
+  font-weight: var(--weight-medium);
+}
+
+.status > svg {
+  flex: none;
+  margin-top: 1px;
+}
+
+.status[data-tone='favorable'] {
+  color: var(--color-positive);
+}
+
+.status[data-tone='unfavorable'] {
+  color: var(--color-negative);
+}
+
+.status[data-tone='neutral'],
+.status[data-tone='undefined'] {
+  color: var(--color-text-muted);
+}
+
+.status[data-tone='undefined'] {
+  font-weight: var(--weight-regular);
+}

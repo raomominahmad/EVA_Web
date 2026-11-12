@@ -1,0 +1,251 @@
+.chart {
+  display: grid;
+  max-width: 60rem;
+  gap: var(--space-4);
+  min-width: 0;
+  margin: 0;
+  padding-block: var(--space-6);
+  border-top: 1px solid var(--color-border);
+}
+
+.caption {
+  display: grid;
+  gap: var(--space-1);
+}
+
+.title {
+  font-size: var(--text-lg);
+  letter-spacing: -0.01em;
+  font-weight: var(--weight-semibold);
+  line-height: var(--leading-snug);
+}
+
+.description {
+  max-width: 68ch;
+  color: var(--color-text-muted);
+  font-size: var(--text-sm);
+  line-height: var(--leading-normal);
+  text-wrap: pretty;
+}
+
+/* One column template for every row and the axis, shared through subgrid, so all tracks and the
+   tick labels have exactly the same width and scale. */
+.plot {
+  display: grid;
+  grid-template-columns: minmax(16rem, max-content) minmax(0, 1fr) minmax(8rem, max-content);
+  column-gap: var(--space-4);
+  row-gap: var(--space-3);
+}
+
+.rows,
+.axis {
+  display: grid;
+  grid-column: 1 / -1;
+  grid-template-columns: subgrid;
+}
+
+.rows {
+  row-gap: var(--space-3);
+}
+
+.row {
+  display: grid;
+  grid-column: 1 / -1;
+  grid-template-columns: subgrid;
+  grid-template-areas:
+    'label track value'
+    '. note note';
+  align-items: center;
+  row-gap: var(--space-1);
+}
+
+.label {
+  display: flex;
+  grid-area: label;
+  align-items: baseline;
+  gap: var(--space-2);
+  min-width: 0;
+  font-size: var(--text-sm);
+}
+
+.symbol {
+  min-width: 2.25rem;
+  font-weight: var(--weight-semibold);
+  text-decoration: none;
+}
+
+.name {
+  color: var(--color-text-muted);
+}
+
+.value {
+  grid-area: value;
+  font-size: var(--text-sm);
+  font-weight: var(--weight-semibold);
+  text-align: right;
+  white-space: nowrap;
+}
+
+.track {
+  position: relative;
+  grid-area: track;
+  height: 1.75rem;
+  border-left: 1px solid var(--color-border-strong);
+  background: linear-gradient(var(--color-surface-subtle), var(--color-surface-subtle)) center /
+    100% 1px no-repeat;
+}
+
+.bar {
+  position: absolute;
+  inset-block: 0.25rem;
+  left: 0;
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  background: var(--bar-color);
+}
+
+.bar[data-variant='planned'] {
+  --bar-color: var(--color-data-planned);
+}
+
+.bar[data-variant='earned'],
+.bar[data-variant='index'] {
+  --bar-color: var(--color-data-earned);
+}
+
+.bar[data-variant='actual'] {
+  --bar-color: var(--color-data-actual);
+}
+
+/* BAC: hatched, so it is distinguishable from AC without color. */
+.bar[data-variant='budget'] {
+  border: 2px solid var(--color-data-budget);
+  background: repeating-linear-gradient(
+    -45deg,
+    var(--color-data-budget) 0 2px,
+    transparent 2px 7px
+  );
+}
+
+/* EAC: a forecast, drawn as a dashed outline with a light fill. */
+.bar[data-variant='forecast'] {
+  border: 2px dashed var(--color-data-forecast);
+  background: color-mix(in srgb, var(--color-data-forecast) 18%, transparent);
+}
+
+/* A true zero is drawn as a thin mark at the axis, so it is visibly zero rather than missing. */
+.bar[data-zero] {
+  width: 3px !important;
+  border: 0;
+  border-radius: 0;
+  background: var(--color-text-muted);
+}
+
+.notPlotted {
+  position: absolute;
+  inset: 0.25rem auto 0.25rem 0;
+  display: flex;
+  align-items: center;
+  padding-inline: var(--space-2);
+  border: 1px dashed var(--color-border-strong);
+  border-left: 0;
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  color: var(--color-text-muted);
+  font-size: var(--text-xs);
+  white-space: nowrap;
+}
+
+/* Stays inside its own track: extending past it would run through the status note below. Rows
+   are close enough that the dashed segments still read as one line. */
+.reference {
+  position: absolute;
+  inset-block: 0;
+  width: 0;
+  border-left: 2px dashed var(--color-text);
+  transform: translateX(-1px);
+}
+
+.note {
+  display: flex;
+  grid-area: note;
+  align-items: flex-start;
+  gap: var(--space-2);
+  color: var(--color-text-muted);
+  font-size: var(--text-xs);
+  line-height: var(--leading-snug);
+}
+
+.note svg {
+  flex: none;
+  margin-top: 1px;
+}
+
+.axis {
+  row-gap: var(--space-1);
+}
+
+.ticks {
+  position: relative;
+  grid-column: 2;
+  height: 1.25rem;
+  border-top: 1px solid var(--color-border-strong);
+  color: var(--color-text-muted);
+  font-size: var(--text-2xs);
+  font-variant-numeric: tabular-nums;
+}
+
+.tick {
+  position: absolute;
+  top: var(--space-1);
+  transform: translateX(-50%);
+  white-space: nowrap;
+}
+
+.tick[data-edge='start'] {
+  transform: none;
+}
+
+.tick[data-edge='end'] {
+  transform: translateX(-100%);
+}
+
+.axisLabel,
+.legend {
+  grid-column: 2;
+  color: var(--color-text-muted);
+  font-size: var(--text-xs);
+}
+
+.axisLabel {
+  text-align: center;
+}
+
+.legend {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.legendLine {
+  width: 0;
+  height: 1rem;
+  border-left: 2px dashed var(--color-text);
+}
+
+@media (max-width: 40rem) {
+  .plot {
+    grid-template-columns: minmax(0, 1fr) max-content;
+  }
+
+  .row {
+    grid-template-areas:
+      'label value'
+      'track track'
+      'note note';
+  }
+
+  .ticks,
+  .axisLabel,
+  .legend {
+    grid-column: 1 / -1;
+  }
+}

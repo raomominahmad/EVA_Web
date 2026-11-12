@@ -1,0 +1,72 @@
+.workspace {
+  display: grid;
+  grid-template-columns: minmax(0, var(--form-width)) minmax(15rem, 19rem);
+  justify-content: space-between;
+  align-items: start;
+  gap: var(--space-12) var(--space-16);
+  margin-top: var(--space-8);
+}
+
+.primary {
+  min-width: 0;
+}
+
+/* The form sits on a card, like the report's sections. Both columns start on the same line. */
+.primary > * + form {
+  margin-top: var(--space-6);
+}
+
+.primary > form,
+.primary > .card {
+  padding: clamp(1.25rem, 3.2vw, 2.25rem);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  background: var(--color-surface);
+  box-shadow: var(--shadow-card);
+}
+
+/* Starts level with the form column and stays in view while the form scrolls. */
+.aside {
+  position: sticky;
+  top: var(--space-6);
+  display: grid;
+  gap: var(--space-6);
+  padding: var(--space-6);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  background: var(--color-surface);
+  box-shadow: var(--shadow-card);
+}
+
+.asideSection {
+  display: grid;
+  gap: var(--space-3);
+}
+
+.asideSection + .asideSection {
+  padding-top: var(--space-6);
+  border-top: 1px solid var(--color-border);
+}
+
+.asideTitle {
+  font-size: var(--text-sm);
+  font-weight: var(--weight-semibold);
+  line-height: var(--leading-snug);
+}
+
+@media (max-width: 1080px) {
+  .workspace {
+    grid-template-columns: minmax(0, var(--form-width));
+  }
+
+  .aside {
+    position: static;
+    margin-top: 0;
+  }
+}
+
+@media (max-width: 600px) {
+  .aside {
+    padding: var(--space-5);
+  }
+}

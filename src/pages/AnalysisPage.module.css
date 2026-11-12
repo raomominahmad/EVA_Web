@@ -1,0 +1,427 @@
+/* Each report section is a card on the night ground (Phase 4.17), so a long report scans
+   as a sequence of clearly separated parts. One border, one restrained shadow, one radius. */
+.section {
+  margin-top: var(--space-6);
+  scroll-margin-top: 5rem;
+  padding: clamp(1.25rem, 3.2vw, 2.25rem);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  background: var(--color-surface);
+  box-shadow: var(--shadow-card);
+}
+
+.section:first-of-type {
+  margin-top: var(--space-10);
+}
+
+/* Project details: one quiet line under the page header, not a card of its own. */
+.overview {
+  margin-top: var(--space-5);
+  scroll-margin-top: 5rem;
+}
+
+.overview .meta {
+  gap: var(--space-2) var(--space-8);
+}
+
+/* The report's map: sticky under the top of the viewport, scrolling sideways on small screens. */
+.reportNav {
+  position: sticky;
+  top: 0;
+  z-index: 3;
+  margin: var(--space-8) calc(-1 * var(--space-2)) 0;
+  padding: var(--space-2);
+  border: 1px solid var(--color-night-border);
+  border-radius: var(--radius-xl);
+  background: rgb(8 15 33 / 82%);
+  backdrop-filter: blur(14px) saturate(140%);
+}
+
+.reportNavList {
+  display: flex;
+  gap: var(--space-1);
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.reportNavLink {
+  display: block;
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius-control);
+  color: var(--color-text-muted);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-medium);
+  text-decoration: none;
+  white-space: nowrap;
+  transition:
+    background-color var(--transition-fast),
+    color var(--transition-fast);
+}
+
+.reportNavLink:hover {
+  background: var(--color-on-navy-hover);
+  color: var(--color-text);
+}
+
+.reportNavLink[aria-current] {
+  background: var(--color-chip-bg);
+  color: var(--color-chip-text);
+}
+
+/* Paired sections (cost and schedule) share a row on wide screens. */
+.pair {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0 var(--space-6);
+  align-items: stretch;
+}
+
+.pair > .section {
+  margin-top: var(--space-6);
+}
+
+@media (max-width: 960px) {
+  .pair {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+.sectionHeader {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  margin-bottom: var(--space-6);
+}
+
+.sectionTitle {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  font-size: var(--text-section);
+  font-weight: var(--weight-semibold);
+  letter-spacing: -0.02em;
+  line-height: var(--leading-snug);
+  text-wrap: balance;
+}
+
+.section > .sectionTitle {
+  margin-bottom: var(--space-4);
+}
+
+.sectionLead {
+  max-width: 68ch;
+  color: var(--color-text-muted);
+  font-size: var(--text-sm);
+  line-height: var(--leading-normal);
+  text-wrap: pretty;
+}
+
+.meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-4) var(--space-10);
+  font-size: var(--text-sm);
+  line-height: var(--leading-snug);
+}
+
+.meta dt {
+  color: var(--color-text-muted);
+  font-size: var(--text-xs);
+}
+
+.meta dd {
+  margin: var(--space-1) 0 0;
+  overflow-wrap: anywhere;
+  font-weight: var(--weight-medium);
+}
+
+.description {
+  max-width: 68ch;
+  margin-top: var(--space-5);
+  color: var(--color-text);
+  font-size: var(--text-sm);
+  line-height: var(--leading-normal);
+  overflow-wrap: anywhere;
+  white-space: pre-line;
+}
+
+.emptyAction {
+  margin-top: var(--space-8);
+}
+
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-3);
+  margin-top: var(--space-6);
+}
+
+.exportStatus {
+  color: var(--color-text-muted);
+  font-size: var(--text-sm);
+}
+
+.exportStatus:empty {
+  display: none;
+}
+
+.staleNotice {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+  max-width: 48rem;
+  margin-top: var(--space-6);
+  padding: var(--space-4) var(--space-5);
+  border: 1px solid var(--color-warning-border);
+  border-radius: var(--radius-md);
+  background: var(--color-warning-subtle);
+  font-size: var(--text-sm);
+  line-height: var(--leading-snug);
+}
+
+.staleIcon {
+  flex: none;
+  margin-top: 1px;
+  color: var(--color-warning);
+}
+
+.staleTitle {
+  margin-bottom: var(--space-1);
+  font-weight: var(--weight-semibold);
+}
+
+.staleAction {
+  margin-top: var(--space-3);
+}
+
+.summary {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--space-3);
+}
+
+.summaryValue {
+  align-self: end;
+}
+
+/* Tiles share their rows through subgrid, so the four headline values sit on one line. */
+.summaryItem {
+  display: grid;
+  grid-row: span 3;
+  grid-template-rows: subgrid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-areas:
+    'term status'
+    'value value'
+    'text text';
+  align-content: start;
+  align-items: start;
+  gap: var(--space-3) var(--space-3);
+  min-width: 0;
+  padding: var(--space-4) var(--space-5) var(--space-5);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface-subtle);
+}
+
+.summaryTerm {
+  display: flex;
+  flex-direction: column;
+  grid-area: term;
+  gap: 2px;
+  font-size: var(--text-sm);
+  font-weight: var(--weight-semibold);
+  line-height: var(--leading-snug);
+}
+
+.summaryBasis {
+  color: var(--color-text-muted);
+  font-size: var(--text-xs);
+  font-weight: var(--weight-regular);
+}
+
+.summaryStatus {
+  grid-area: status;
+  align-self: start;
+  margin: 0;
+}
+
+.summaryValue {
+  grid-area: value;
+  min-width: 0;
+  margin: 0;
+  font-size: 1.75rem;
+  font-weight: var(--weight-semibold);
+  letter-spacing: -0.025em;
+  line-height: var(--leading-tight);
+  overflow-wrap: anywhere;
+}
+
+.summarySymbol {
+  color: var(--color-text-muted);
+  font-size: var(--text-xs);
+  font-weight: var(--weight-medium);
+  letter-spacing: 0;
+}
+
+.summaryText {
+  grid-area: text;
+  margin: 0;
+  color: var(--color-text);
+  font-size: var(--text-sm);
+  line-height: var(--leading-normal);
+  text-wrap: pretty;
+}
+
+@media (max-width: 1080px) {
+  .summary {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 600px) {
+  .summary {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+.callout {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+  max-width: 72ch;
+  margin-bottom: var(--space-5);
+  padding: var(--space-4) var(--space-5);
+  border: 1px solid var(--color-info-border);
+  border-radius: var(--radius-md);
+  background: var(--color-primary-subtle);
+  font-size: var(--text-sm);
+  line-height: var(--leading-snug);
+}
+
+.callout > svg {
+  flex: none;
+  margin-top: 1px;
+  color: var(--color-info);
+}
+
+.budgetList {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 13rem), 1fr));
+  border-top: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.budgetItem {
+  display: grid;
+  align-content: start;
+  gap: var(--space-2);
+  line-height: var(--leading-snug);
+  min-width: 0;
+  padding: var(--space-5) var(--space-5) var(--space-5) 0;
+}
+
+.budgetTerm {
+  font-size: var(--text-sm);
+  font-weight: var(--weight-semibold);
+}
+
+.budgetItem dd {
+  margin: 0;
+}
+
+.budgetValue {
+  font-size: var(--text-xl);
+  font-weight: var(--weight-semibold);
+  letter-spacing: -0.02em;
+  line-height: var(--leading-tight);
+  overflow-wrap: anywhere;
+}
+
+.budgetFormula code {
+  font-family: var(--font-mono);
+  font-size: var(--text-2xs);
+  line-height: var(--leading-normal);
+}
+
+.budgetDefinition {
+  color: var(--color-text-muted);
+  font-size: var(--text-xs);
+  line-height: var(--leading-snug);
+}
+
+.budgetInterpretation {
+  max-width: 72ch;
+  margin-top: var(--space-4);
+  font-size: var(--text-sm);
+  line-height: var(--leading-normal);
+}
+
+.charts {
+  display: grid;
+}
+
+.assumptions {
+  display: grid;
+  gap: var(--space-2);
+  max-width: 72ch;
+  padding-left: var(--space-5);
+  font-size: var(--text-sm);
+  line-height: var(--leading-normal);
+  list-style: disc;
+}
+
+@media (max-width: 600px) {
+  .section {
+    margin-top: var(--space-10);
+    padding-top: var(--space-6);
+  }
+
+  .toolbar > button {
+    flex: 1 1 12rem;
+  }
+}
+
+/* The AI summary: the one violet-lit card in the report, in the landing page's light. Distinct
+   at a glance from the calculated sections, while its ground stays as dark as theirs. */
+.aiSection {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  border-color: var(--color-ai-border);
+  background:
+    radial-gradient(40rem 18rem at 0% 0%, rgb(139 92 246 / 22%), transparent 70%),
+    radial-gradient(32rem 16rem at 100% 0%, rgb(96 165 250 / 12%), transparent 70%),
+    var(--color-ai-surface);
+  box-shadow:
+    inset 0 1px 0 rgb(196 181 253 / 14%),
+    0 24px 60px -32px rgb(139 92 246 / 55%);
+}
+
+/* A lit top edge, violet into blue. */
+.aiSection::before {
+  position: absolute;
+  inset: 0 0 auto;
+  z-index: -1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #a78bfa 30%, #60a5fa 70%, transparent);
+  content: '';
+}
+
+.aiIcon {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border: 1px solid rgb(196 181 253 / 35%);
+  border-radius: var(--radius-lg);
+  background: linear-gradient(135deg, rgb(139 92 246 / 35%), rgb(96 165 250 / 20%));
+  color: #e9e3ff;
+}
+
+/* Its entry in the section bar carries the same violet. */
+.reportNavLink[href='#ai-summary'] {
+  color: var(--color-chip-text);
+}

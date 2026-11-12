@@ -1,0 +1,201 @@
+.form {
+  max-width: var(--form-width);
+}
+
+.section {
+  margin-top: var(--space-10);
+  padding-top: var(--space-8);
+  border-top: 1px solid var(--color-border);
+}
+
+.section + .section {
+  margin-top: var(--space-8);
+}
+
+/* The first section opens the form card: the card's own edge replaces the rule above it. */
+.section:first-of-type {
+  margin-top: 0;
+  padding-top: 0;
+  border-top: 0;
+}
+
+.sectionHeader {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.sectionTitle {
+  font-size: var(--text-section);
+  font-weight: var(--weight-semibold);
+  letter-spacing: -0.02em;
+  line-height: var(--leading-snug);
+}
+
+.sectionLead {
+  max-width: 60ch;
+  color: var(--color-text-muted);
+  font-size: var(--text-sm);
+  line-height: var(--leading-normal);
+  text-wrap: pretty;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: var(--space-5);
+  margin-top: var(--space-5);
+}
+
+/* Each field spans label, hint, control, and error rows, so controls in the same grid row align
+   even when hints wrap to different lengths. */
+.grid > * {
+  display: grid;
+  grid-row: span 4;
+  grid-template-rows: subgrid;
+  align-content: start;
+  row-gap: 0;
+  padding-bottom: var(--space-6);
+}
+
+.grid > * > :not(label) {
+  align-self: start;
+}
+
+.full {
+  grid-column: 1 / -1;
+}
+
+.currencyField {
+  max-width: 20rem;
+  margin-top: var(--space-5);
+}
+
+.rules {
+  display: grid;
+  gap: var(--space-2);
+  margin-top: var(--space-2);
+  padding: var(--space-4) var(--space-5);
+  border: 1px solid var(--color-info-border);
+  border-radius: var(--radius-md);
+  background: var(--color-primary-subtle);
+  font-size: var(--text-sm);
+  line-height: var(--leading-snug);
+}
+
+.rulesTitle {
+  font-weight: var(--weight-semibold);
+}
+
+.rules ul {
+  display: grid;
+  gap: var(--space-1);
+  color: var(--color-text);
+}
+
+.rules li {
+  position: relative;
+  padding-left: var(--space-4);
+}
+
+.rules li::before {
+  content: '';
+  position: absolute;
+  top: 0.6em;
+  left: 0;
+  width: 6px;
+  height: 1px;
+  background: var(--color-text-muted);
+}
+
+.symbol {
+  display: inline-block;
+  min-width: 2.75em;
+  padding: 1px 6px;
+  border: 1px solid var(--color-chip-border);
+  border-radius: var(--radius-sm);
+  background: var(--color-chip-bg);
+  color: var(--color-chip-text);
+  font-family: var(--font-mono);
+  font-size: var(--text-2xs);
+  font-weight: var(--weight-semibold);
+  letter-spacing: 0.02em;
+  line-height: 1.5;
+  text-decoration: none;
+  text-align: center;
+  text-decoration: none;
+  cursor: help;
+}
+
+@media (max-width: 600px) {
+  .grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .grid > * {
+    padding-bottom: var(--space-5);
+  }
+
+  .currencyField {
+    max-width: none;
+  }
+
+  .rules {
+    padding-inline: var(--space-4);
+  }
+}
+
+.importBar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2) var(--space-4);
+}
+
+.importHint {
+  color: var(--color-text-muted);
+  font-size: var(--text-sm);
+}
+
+.importStatus {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-2);
+  max-width: var(--form-width);
+  margin-top: var(--space-4);
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--color-positive-border);
+  border-radius: var(--radius-md);
+  background: var(--color-positive-subtle);
+  font-size: var(--text-sm);
+  line-height: var(--leading-snug);
+}
+
+.importStatus > svg {
+  flex: none;
+  margin-top: 1px;
+  color: var(--color-positive);
+}
+
+.importStatus:empty {
+  display: none;
+}
+
+.lastAnalysis {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2) var(--space-4);
+  max-width: var(--form-width);
+  margin-top: var(--space-6);
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--color-border);
+  color: var(--color-text-muted);
+  font-size: var(--text-sm);
+  line-height: var(--leading-snug);
+}
+
+.lastAnalysis > p {
+  flex: 1 1 20rem;
+}

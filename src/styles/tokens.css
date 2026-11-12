@@ -1,0 +1,156 @@
+:root {
+  /* One dark theme across the whole site (Phase 4.18): the landing page's night ground, with
+     raised navy surfaces for cards. Contrast on --color-surface (#0f1a33): text 14.7:1, muted
+     8.1:1, placeholder 6.0:1; control borders (--color-border-strong) 3.4:1. */
+  color-scheme: dark;
+
+  --color-bg: #080f21;
+  --color-surface: #0f1a33;
+  --color-surface-subtle: #15223f;
+  --color-surface-tint: #1b2a4b;
+  --color-text: #e8edf6;
+  --color-text-muted: #a3b3cd;
+  --color-border: #1f2d4b;
+  --color-border-strong: #5b6f96;
+  --color-border-hover: #7d90b5;
+  --color-placeholder: #8a99b4;
+  /* Text fields sit slightly below the card surface, so empty fields read as inputs. */
+  --color-field: #0a1329;
+  /* Links and accent text: violet, 6.4:1 on the surface. */
+  --color-link: #a78bfa;
+  --color-link-hover: #c4b5fd;
+
+  /* The primary action is the landing page's white pill: navy text on white, 16.8:1. */
+  --color-primary: #ffffff;
+  --color-primary-hover: #e8eef6;
+  --color-primary-contrast: #101d36;
+  --color-primary-active: #d5deec;
+  --color-primary-subtle: #18264a;
+  --color-focus: #c4b5fd;
+  --color-focus-ring: rgb(167 139 250 / 30%);
+  --color-selection: #34558c;
+
+  /* Deep navy grounds: the site header and footer, the landing hero, and its closing band. Text
+     on them uses the on-navy tokens (white 16.8:1, muted 10.6:1, subtle 7.9:1 on navy-deep);
+     the outline of a secondary control on navy is 4.1:1. Focus rings turn white on navy. */
+  --color-navy-deep: #101d36;
+  --color-navy-raised: #1c3155;
+  --color-navy-line: #2a4068;
+  --color-navy-mark: #34558c;
+  --color-on-navy: #ffffff;
+  --color-on-navy-muted: #c3cee0;
+  --color-on-navy-subtle: #a3b3cd;
+  --color-on-navy-outline: #6a7fa3;
+  --color-on-navy-hover: rgb(255 255 255 / 8%);
+  /* The EVA mark: one violet everywhere (header, footer, landing badge). */
+  --color-brand-mark: #5b3fc4;
+  /* Metric symbols (BAC, PV, CV, CPI...): one violet chip across the form, aside and report.
+     Text 7.2:1 on the chip. */
+  --color-chip-bg: rgb(139 92 246 / 14%);
+  --color-chip-border: rgb(167 139 250 / 30%);
+  --color-chip-text: #c4b5fd;
+  /* The AI summary section: the one violet-lit card in the report, so it is found at a glance.
+     Its ground stays dark (text 13.9:1, muted 7.6:1). */
+  --color-ai-surface: #141a3d;
+  --color-ai-border: rgb(167 139 250 / 38%);
+
+  /* The dark landing page (Phase 4.17): a near-black navy night, lit in violet and blue. Accent
+     text on night: violet #a78bfa 7.0:1, blue #60a5fa 7.5:1, slate #94a3b8 7.4:1. */
+  --color-night: #080f21;
+  --color-night-raised: #0d1730;
+  --color-navy-secondary: #172743;
+  --color-violet: #8b5cf6;
+  --color-violet-text: #a78bfa;
+  --color-cyan: #60a5fa;
+  --color-night-border: rgb(148 163 184 / 16%);
+  --color-night-border-strong: rgb(148 163 184 / 28%);
+  --color-night-card: rgb(16 29 54 / 62%);
+  --gradient-accent: linear-gradient(100deg, #c4b5fd 0%, #a78bfa 38%, #60a5fa 100%);
+
+  /* Status colours lifted for the dark ground; each is at least 6:1 on its own tinted ground. */
+  --color-positive: #4ade80;
+  --color-negative: #ff8b7e;
+  --color-negative-hover: #ff6b5e;
+  --color-warning: #fbbf5a;
+  /* Tinted grounds and borders for notices. Text on them stays --color-text. */
+  --color-negative-subtle: #2e1420;
+  --color-negative-border: #6b2a33;
+  --color-warning-subtle: #2c2214;
+  --color-warning-border: #6b4e1f;
+  --color-positive-subtle: #0c2a24;
+  --color-positive-border: #1e5c47;
+  --color-info-border: #2c4170;
+  --color-info: #8ab4ff;
+
+  /* Chart series in violet and blue, lifted for the dark surface (PV 6.8:1, EV 6.4:1, AC 6.7:1,
+     BAC 9.3:1, EAC 10.4:1 on --color-surface). Series are also told apart by pattern (BAC
+     hatched, EAC dashed outline) and direct text labels, never by color alone. */
+  --color-data-planned: #60a5fa;
+  --color-data-earned: #a78bfa;
+  --color-data-actual: #94a3b8;
+  --color-data-budget: #2dd4bf;
+  --color-data-forecast: #fbbf24;
+
+  --font-sans:
+    'Geist Variable', 'Geist', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-mono:
+    'Geist Mono Variable', 'Geist Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+
+  --text-2xs: 0.75rem;
+  --text-xs: 0.8125rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.5rem;
+  --text-2xl: 2rem;
+  --text-3xl: clamp(1.875rem, 1.4rem + 1.6vw, 2.5rem);
+  /* Landing page headline only. */
+  --text-display: clamp(2.25rem, 1.5rem + 2.6vw, 3.5rem);
+  /* Report and form section headings: one step above body-large, well below the page title. */
+  --text-section: 1.3125rem;
+
+  --leading-tight: 1.1;
+  --leading-snug: 1.35;
+  --leading-normal: 1.6;
+
+  --weight-regular: 400;
+  --weight-medium: 500;
+  --weight-semibold: 600;
+
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+  --space-20: 5rem;
+
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 10px;
+  --radius-xl: 14px;
+  --radius-2xl: 20px;
+  /* Every button and input uses one radius, on the landing page and in the workflow. */
+  --radius-control: 8px;
+
+  --shadow-sm: 0 1px 2px rgb(2 6 16 / 40%);
+  /* Cards on the night ground: a faint top highlight and a deep, soft drop. */
+  --shadow-card: inset 0 1px 0 rgb(255 255 255 / 4%), 0 16px 40px -24px rgb(2 6 16 / 80%);
+  --shadow-header: 0 1px 0 rgb(2 6 16 / 40%);
+  --shadow-dialog: 0 24px 64px rgb(2 6 16 / 70%);
+  --shadow-preview:
+    0 2px 4px rgb(4 10 24 / 30%), 0 28px 56px -20px rgb(4 10 24 / 60%),
+    0 0 0 1px rgb(148 163 184 / 10%);
+  --color-backdrop: rgb(2 6 16 / 72%);
+
+  --container: 1120px;
+  --form-width: 640px;
+
+  --transition-fast: 120ms ease;
+  --transition-base: 180ms ease;
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+}

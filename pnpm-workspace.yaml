@@ -1,0 +1,3 @@
+# Keep this release available despite the local minimum-release-age policy.
+minimumReleaseAgeExclude:
+  - lucide-react@1.64.0

@@ -1,0 +1,28 @@
+.fallback {
+  max-width: 560px;
+  margin: 0 auto;
+  padding: var(--space-16) var(--space-6);
+}
+
+.label {
+  color: var(--color-negative);
+  font-family: var(--font-mono);
+  font-size: var(--text-2xs);
+}
+
+.title {
+  margin-top: var(--space-3);
+  font-size: var(--text-2xl);
+  font-weight: var(--weight-semibold);
+  letter-spacing: -0.03em;
+  line-height: var(--leading-tight);
+}
+
+.body {
+  margin-top: var(--space-4);
+  color: var(--color-text-muted);
+}
+
+.fallback button {
+  margin-top: var(--space-6);
+}
